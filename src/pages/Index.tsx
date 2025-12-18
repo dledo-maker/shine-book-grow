@@ -46,7 +46,7 @@ const Index = () => {
               <img 
                 src={jmrLogo} 
                 alt="JMR Cleaning Logo" 
-                className="h-28 md:h-36 mx-auto rounded-xl shadow-card bg-card/90 p-4"
+                className="h-28 md:h-36 mx-auto drop-shadow-lg"
               />
             </div>
 
