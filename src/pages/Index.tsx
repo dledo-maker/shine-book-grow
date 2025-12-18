@@ -197,19 +197,19 @@ const Index = () => {
                 <p className="text-primary-foreground/70 mb-4">For urgent inquiries:</p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                   <a 
-                    href="mailto:contact@jmrcleaning.ca" 
+                    href="mailto:j171@live.ca" 
                     className="inline-flex items-center gap-2 text-primary-foreground hover:text-secondary transition-colors"
                   >
                     <Mail className="h-5 w-5" />
-                    contact@jmrcleaning.ca
+                    j171@live.ca
                   </a>
                   <span className="hidden sm:block text-primary-foreground/40">|</span>
                   <a 
-                    href="tel:+14165550123" 
+                    href="tel:+16475236156" 
                     className="inline-flex items-center gap-2 text-primary-foreground hover:text-secondary transition-colors"
                   >
                     <Phone className="h-5 w-5" />
-                    (416) 555-0123
+                    (647) 523-6156
                   </a>
                 </div>
               </div>
