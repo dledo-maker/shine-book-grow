@@ -3,6 +3,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import cleanerImage from "@/assets/cleaner-topview.png";
 import { 
   Sparkles, 
   Home, 
@@ -36,6 +37,16 @@ const Index = () => {
             <div className="absolute top-20 left-10 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse" />
             <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
             <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-secondary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+          </div>
+
+          {/* Animated Cleaner */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <img 
+              src={cleanerImage} 
+              alt="" 
+              className="absolute w-32 md:w-48 lg:w-56 animate-cleaner opacity-90 drop-shadow-2xl"
+              style={{ top: '10%', left: '0%' }}
+            />
           </div>
           
           {/* Content */}
