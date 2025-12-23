@@ -52,9 +52,9 @@ const Index = () => {
               <br className="hidden md:block" />
               deserves{" "}
               <span className="relative inline-block">
-                <span className="text-accent font-extrabold">CARE</span>
+                <span className="text-white font-extrabold drop-shadow-lg">CARE</span>
                 <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 100 8" preserveAspectRatio="none">
-                  <path d="M0 7 Q 50 0 100 7" stroke="currentColor" strokeWidth="3" fill="none" className="text-accent/60" />
+                  <path d="M0 7 Q 50 0 100 7" stroke="currentColor" strokeWidth="3" fill="none" className="text-white/60" />
                 </svg>
               </span>
             </h1>
