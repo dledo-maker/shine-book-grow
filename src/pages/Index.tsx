@@ -39,15 +39,12 @@ const Index = () => {
             <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-secondary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
           </div>
 
-          {/* Animated Cleaner */}
-          <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            <img 
-              src={cleanerImage} 
-              alt="" 
-              className="absolute w-32 md:w-48 lg:w-56 animate-cleaner opacity-90 drop-shadow-2xl"
-              style={{ top: '10%', left: '0%' }}
-            />
-          </div>
+          {/* Animated Cleaner - follows page */}
+          <img 
+            src={cleanerImage} 
+            alt="" 
+            className="w-24 md:w-36 lg:w-44 animate-cleaner opacity-80 drop-shadow-2xl pointer-events-none"
+          />
           
           {/* Content */}
           <div className="relative z-10 container mx-auto px-4 py-32 text-center">
