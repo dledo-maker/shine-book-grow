@@ -43,8 +43,11 @@ const Index = () => {
           <img 
             src={cleanerImage} 
             alt="" 
-            className="w-28 md:w-40 lg:w-48 animate-cleaner pointer-events-none drop-shadow-xl"
-            style={{ mixBlendMode: 'multiply' }}
+            className="w-32 md:w-44 lg:w-52 animate-cleaner pointer-events-none drop-shadow-2xl"
+            style={{ 
+              filter: 'drop-shadow(0 10px 25px rgba(0,0,0,0.3))',
+              background: 'transparent'
+            }}
           />
           
           {/* Content */}
