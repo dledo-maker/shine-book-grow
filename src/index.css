@@ -235,50 +235,34 @@
 
 @keyframes cleanerPath {
   0% {
-    top: -5%;
-    left: 85%;
-  }
-  20% {
-    top: 20%;
-    left: 5%;
-  }
-  40% {
-    top: 40%;
+    top: -10%;
     left: 80%;
-  }
-  60% {
-    top: 60%;
-    left: 10%;
-  }
-  80% {
-    top: 80%;
-    left: 75%;
-  }
-  100% {
-    top: 105%;
-    left: 20%;
-  }
-}
-
-@keyframes cleaningMotion {
-  0%, 100% {
-    transform: rotate(-8deg) translateY(0) scale(1);
+    transform: rotate(0deg) scale(1);
   }
   25% {
-    transform: rotate(5deg) translateY(-8px) scale(1.02);
+    top: 25%;
+    left: 5%;
+    transform: rotate(-15deg) scale(1.1);
   }
   50% {
-    transform: rotate(-5deg) translateY(0) scale(1);
+    top: 50%;
+    left: 85%;
+    transform: rotate(10deg) scale(1);
   }
   75% {
-    transform: rotate(8deg) translateY(-5px) scale(0.98);
+    top: 75%;
+    left: 10%;
+    transform: rotate(-10deg) scale(1.05);
+  }
+  100% {
+    top: 110%;
+    left: 70%;
+    transform: rotate(5deg) scale(1);
   }
 }
 
 .animate-cleaner {
-  animation: 
-    cleanerPath 30s ease-in-out infinite,
-    cleaningMotion 1.2s ease-in-out infinite;
+  animation: cleanerPath 25s ease-in-out infinite;
   position: fixed;
-  z-index: 50;
+  z-index: 40;
 }
