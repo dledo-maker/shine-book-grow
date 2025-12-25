@@ -3,7 +3,6 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import cleanerImage from "@/assets/cleaner-character.png";
 import { 
   Sparkles, 
   Home, 
@@ -15,6 +14,84 @@ import {
   Clock,
   Heart
 } from "lucide-react";
+
+// Animated cleaner character component
+const AnimatedCleaner = () => (
+  <div className="animate-cleaner pointer-events-none">
+    <svg 
+      width="120" 
+      height="120" 
+      viewBox="0 0 120 120" 
+      className="drop-shadow-2xl"
+    >
+      {/* Sparkle trail */}
+      <g className="animate-sparkle-trail">
+        <circle cx="10" cy="60" r="3" fill="hsl(var(--accent))" opacity="0.8">
+          <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="25" cy="50" r="2" fill="hsl(var(--accent))" opacity="0.6">
+          <animate attributeName="opacity" values="0.6;0.1;0.6" dur="0.8s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="20" cy="70" r="2.5" fill="hsl(var(--secondary))" opacity="0.7">
+          <animate attributeName="opacity" values="0.7;0.2;0.7" dur="1.2s" repeatCount="indefinite" />
+        </circle>
+      </g>
+      
+      {/* Body/Dress */}
+      <ellipse cx="60" cy="75" rx="25" ry="30" fill="hsl(var(--primary))">
+        <animate attributeName="ry" values="30;32;30" dur="0.6s" repeatCount="indefinite" />
+      </ellipse>
+      
+      {/* Apron */}
+      <path d="M45 55 Q60 50 75 55 L70 90 Q60 95 50 90 Z" fill="white" opacity="0.9" />
+      
+      {/* Head */}
+      <circle cx="60" cy="35" r="18" fill="#FFD5C2">
+        <animate attributeName="cy" values="35;33;35" dur="0.6s" repeatCount="indefinite" />
+      </circle>
+      
+      {/* Hair */}
+      <ellipse cx="60" cy="25" rx="20" ry="12" fill="#8B4513">
+        <animate attributeName="cy" values="25;23;25" dur="0.6s" repeatCount="indefinite" />
+      </ellipse>
+      <ellipse cx="48" cy="30" rx="5" ry="8" fill="#8B4513" />
+      <ellipse cx="72" cy="30" rx="5" ry="8" fill="#8B4513" />
+      
+      {/* Eyes */}
+      <ellipse cx="54" cy="35" rx="3" ry="4" fill="#333">
+        <animate attributeName="ry" values="4;1;4" dur="3s" repeatCount="indefinite" />
+      </ellipse>
+      <ellipse cx="66" cy="35" rx="3" ry="4" fill="#333">
+        <animate attributeName="ry" values="4;1;4" dur="3s" repeatCount="indefinite" />
+      </ellipse>
+      
+      {/* Smile */}
+      <path d="M54 44 Q60 50 66 44" stroke="#333" strokeWidth="2" fill="none" strokeLinecap="round" />
+      
+      {/* Arm with mop */}
+      <g className="origin-center">
+        <line x1="85" y1="55" x2="110" y2="80" stroke="hsl(var(--primary))" strokeWidth="8" strokeLinecap="round">
+          <animate attributeName="x2" values="110;105;110" dur="0.4s" repeatCount="indefinite" />
+          <animate attributeName="y2" values="80;85;80" dur="0.4s" repeatCount="indefinite" />
+        </line>
+        {/* Mop head */}
+        <ellipse cx="112" cy="85" rx="12" ry="6" fill="hsl(var(--secondary))">
+          <animate attributeName="cx" values="112;107;112" dur="0.4s" repeatCount="indefinite" />
+          <animate attributeName="cy" values="85;90;85" dur="0.4s" repeatCount="indefinite" />
+        </ellipse>
+        {/* Bubbles from mop */}
+        <circle cx="115" cy="75" r="4" fill="hsl(var(--accent))" opacity="0.6">
+          <animate attributeName="cy" values="75;65;75" dur="1.5s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.6;0;0.6" dur="1.5s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="105" cy="80" r="3" fill="hsl(var(--accent))" opacity="0.5">
+          <animate attributeName="cy" values="80;68;80" dur="1.8s" repeatCount="indefinite" />
+          <animate attributeName="opacity" values="0.5;0;0.5" dur="1.8s" repeatCount="indefinite" />
+        </circle>
+      </g>
+    </svg>
+  </div>
+);
 
 const Index = () => {
   return (
@@ -39,16 +116,8 @@ const Index = () => {
             <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-secondary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
           </div>
 
-          {/* Animated Cleaner - follows page with cleaning motion */}
-          <img 
-            src={cleanerImage} 
-            alt="" 
-            className="w-32 md:w-44 lg:w-52 animate-cleaner pointer-events-none drop-shadow-2xl"
-            style={{ 
-              filter: 'drop-shadow(0 10px 25px rgba(0,0,0,0.3))',
-              background: 'transparent'
-            }}
-          />
+          {/* Animated Cleaner Character */}
+          <AnimatedCleaner />
           
           {/* Content */}
           <div className="relative z-10 container mx-auto px-4 py-32 text-center">
