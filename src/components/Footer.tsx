@@ -93,24 +93,24 @@ export function Footer() {
             <ul className="space-y-4">
               <li>
                 <a
-                  href="tel:+14165551234"
+                  href="tel:+16475236156"
                   className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors text-sm"
                 >
                   <div className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center">
                     <Phone size={16} />
                   </div>
-                  (416) 555-1234
+                  (647) 523-6156
                 </a>
               </li>
               <li>
                 <a
-                  href="mailto:hello@jmrcleaning.ca"
+                  href="mailto:j171@live.ca"
                   className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors text-sm"
                 >
                   <div className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center">
                     <Mail size={16} />
                   </div>
-                  hello@jmrcleaning.ca
+                  j171@live.ca
                 </a>
               </li>
             </ul>
