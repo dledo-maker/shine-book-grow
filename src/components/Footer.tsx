@@ -104,13 +104,13 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:j171@live.ca"
+                  href="mailto:contact@jmrclean.com"
                   className="flex items-center gap-3 text-background/70 hover:text-primary transition-colors text-sm"
                 >
                   <div className="w-10 h-10 rounded-full bg-background/10 flex items-center justify-center">
                     <Mail size={16} />
                   </div>
-                  j171@live.ca
+                  contact@jmrclean.com
                 </a>
               </li>
             </ul>
