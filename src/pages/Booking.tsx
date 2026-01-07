@@ -76,14 +76,14 @@ const Booking = () => {
                 <div className="space-y-3 text-sm">
                   <p>
                     <span className="opacity-70">Phone:</span>{" "}
-                    <a href="tel:+14165551234" className="hover:underline">
-                      (416) 555-1234
+                    <a href="tel:+16475236156" className="hover:underline">
+                      (647) 523-6156
                     </a>
                   </p>
                   <p>
                     <span className="opacity-70">Email:</span>{" "}
-                    <a href="mailto:hello@jmrcleaning.ca" className="hover:underline">
-                      hello@jmrcleaning.ca
+                    <a href="mailto:j171@live.ca" className="hover:underline">
+                      j171@live.ca
                     </a>
                   </p>
                 </div>
