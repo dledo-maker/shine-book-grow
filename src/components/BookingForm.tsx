@@ -20,9 +20,12 @@ import { CalendarIcon, CheckCircle2 } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
 import { toast } from "@/hooks/use-toast";
+import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from "@/lib/web3forms";
 
 export function BookingForm() {
   const [date, setDate] = useState<Date>();
+  const [cleaningType, setCleaningType] = useState("");
+  const [serviceArea, setServiceArea] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -30,15 +33,36 @@ export function BookingForm() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const formData = new FormData(e.currentTarget);
+    
+    const result = await submitToWeb3Forms({
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: "New Booking Request - JMR Cleaning",
+      from_name: "JMR Cleaning Website",
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      phone: formData.get("phone") as string,
+      cleaning_type: cleaningType,
+      service_area: serviceArea,
+      preferred_date: date ? format(date, "PPP") : "Not specified",
+      message: formData.get("message") as string || "No additional message",
+    });
     
     setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast({
-      title: "Request Submitted!",
-      description: "A JMR representative will contact you shortly to confirm your booking.",
-    });
+    
+    if (result.success) {
+      setIsSubmitted(true);
+      toast({
+        title: "Request Submitted!",
+        description: "A JMR representative will contact you shortly to confirm your booking.",
+      });
+    } else {
+      toast({
+        title: "Submission Failed",
+        description: result.message,
+        variant: "destructive",
+      });
+    }
   };
 
   if (isSubmitted) {
@@ -58,22 +82,22 @@ export function BookingForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div className="space-y-2">
           <Label htmlFor="name">Full Name *</Label>
-          <Input id="name" placeholder="John Doe" required />
+          <Input id="name" name="name" placeholder="John Doe" required />
         </div>
         <div className="space-y-2">
           <Label htmlFor="email">Email *</Label>
-          <Input id="email" type="email" placeholder="john@example.com" required />
+          <Input id="email" name="email" type="email" placeholder="john@example.com" required />
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div className="space-y-2">
           <Label htmlFor="phone">Phone Number *</Label>
-          <Input id="phone" type="tel" placeholder="(416) 555-0123" required />
+          <Input id="phone" name="phone" type="tel" placeholder="(416) 555-0123" required />
         </div>
         <div className="space-y-2">
           <Label htmlFor="cleaning-type">Type of Cleaning *</Label>
-          <Select required>
+          <Select required value={cleaningType} onValueChange={setCleaningType}>
             <SelectTrigger>
               <SelectValue placeholder="Select type" />
             </SelectTrigger>
@@ -88,7 +112,7 @@ export function BookingForm() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div className="space-y-2">
           <Label htmlFor="service-area">Service Area *</Label>
-          <Select required>
+          <Select required value={serviceArea} onValueChange={setServiceArea}>
             <SelectTrigger>
               <SelectValue placeholder="Select area" />
             </SelectTrigger>
@@ -134,6 +158,7 @@ export function BookingForm() {
         <Label htmlFor="message">Additional Message (Optional)</Label>
         <Textarea
           id="message"
+          name="message"
           placeholder="Tell us about your cleaning needs..."
           className="min-h-[100px]"
         />

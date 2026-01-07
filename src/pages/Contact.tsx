@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
+import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from "@/lib/web3forms";
 import { 
   Phone, 
   Mail, 
@@ -56,14 +57,33 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const formData = new FormData(e.currentTarget);
+    
+    const result = await submitToWeb3Forms({
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: `Contact Form: ${formData.get("subject") as string}`,
+      from_name: "JMR Cleaning Website",
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      phone: formData.get("phone") as string || "Not provided",
+      message: formData.get("message") as string,
+    });
     
     setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you as soon as possible.",
-    });
+    
+    if (result.success) {
+      setIsSubmitted(true);
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you as soon as possible.",
+      });
+    } else {
+      toast({
+        title: "Submission Failed",
+        description: result.message,
+        variant: "destructive",
+      });
+    }
   };
 
   return (
@@ -116,28 +136,29 @@ const Contact = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div className="space-y-2">
                       <Label htmlFor="name">Full Name *</Label>
-                      <Input id="name" placeholder="Your name" required />
+                      <Input id="name" name="name" placeholder="Your name" required />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email">Email *</Label>
-                      <Input id="email" type="email" placeholder="you@example.com" required />
+                      <Input id="email" name="email" type="email" placeholder="you@example.com" required />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" type="tel" placeholder="(416) 555-0123" />
+                    <Input id="phone" name="phone" type="tel" placeholder="(416) 555-0123" />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="subject">Subject *</Label>
-                    <Input id="subject" placeholder="How can we help?" required />
+                    <Input id="subject" name="subject" placeholder="How can we help?" required />
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="message">Message *</Label>
                     <Textarea
                       id="message"
+                      name="message"
                       placeholder="Tell us more about your inquiry..."
                       className="min-h-[120px]"
                       required
