@@ -26,8 +26,8 @@ const contactInfo = [
   {
     icon: Mail,
     label: "Email",
-    value: "j171@live.ca",
-    href: "mailto:j171@live.ca",
+    value: "contact@jmrclean.com",
+    href: "mailto:contact@jmrclean.com",
   },
   {
     icon: Clock,

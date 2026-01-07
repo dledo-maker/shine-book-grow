@@ -82,8 +82,8 @@ const Booking = () => {
                   </p>
                   <p>
                     <span className="opacity-70">Email:</span>{" "}
-                    <a href="mailto:j171@live.ca" className="hover:underline">
-                      j171@live.ca
+                    <a href="mailto:contact@jmrclean.com" className="hover:underline">
+                      contact@jmrclean.com
                     </a>
                   </p>
                 </div>
