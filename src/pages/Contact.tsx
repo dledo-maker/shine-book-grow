@@ -20,14 +20,14 @@ const contactInfo = [
   {
     icon: Phone,
     label: "Phone",
-    value: "(416) 555-1234",
-    href: "tel:+14165551234",
+    value: "(647) 523-6156",
+    href: "tel:+16475236156",
   },
   {
     icon: Mail,
     label: "Email",
-    value: "hello@jmrcleaning.ca",
-    href: "mailto:hello@jmrcleaning.ca",
+    value: "j171@live.ca",
+    href: "mailto:j171@live.ca",
   },
   {
     icon: Clock,
