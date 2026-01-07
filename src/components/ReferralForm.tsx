@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CheckCircle2, Gift } from "lucide-react";
+import { Gift } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
+import { submitToWeb3Forms, WEB3FORMS_ACCESS_KEY } from "@/lib/web3forms";
 
 export function ReferralForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -13,15 +14,32 @@ export function ReferralForm() {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    const formData = new FormData(e.currentTarget);
+    
+    const result = await submitToWeb3Forms({
+      access_key: WEB3FORMS_ACCESS_KEY,
+      subject: "New Referral Program Signup - JMR Cleaning",
+      from_name: "JMR Cleaning Website",
+      name: formData.get("referrer-name") as string,
+      phone: formData.get("referrer-phone") as string,
+      email: formData.get("referrer-email") as string,
+    });
     
     setIsSubmitting(false);
-    setIsSubmitted(true);
-    toast({
-      title: "Welcome to the Referral Program!",
-      description: "We'll contact you with your unique referral code and reward details.",
-    });
+    
+    if (result.success) {
+      setIsSubmitted(true);
+      toast({
+        title: "Welcome to the Referral Program!",
+        description: "We'll contact you with your unique referral code and reward details.",
+      });
+    } else {
+      toast({
+        title: "Submission Failed",
+        description: result.message,
+        variant: "destructive",
+      });
+    }
   };
 
   if (isSubmitted) {
@@ -42,17 +60,17 @@ export function ReferralForm() {
     <form onSubmit={handleSubmit} className="space-y-5">
       <div className="space-y-2">
         <Label htmlFor="referrer-name">Your Full Name *</Label>
-        <Input id="referrer-name" placeholder="Jane Doe" required />
+        <Input id="referrer-name" name="referrer-name" placeholder="Jane Doe" required />
       </div>
 
       <div className="space-y-2">
         <Label htmlFor="referrer-phone">Your Phone Number *</Label>
-        <Input id="referrer-phone" type="tel" placeholder="(416) 555-0123" required />
+        <Input id="referrer-phone" name="referrer-phone" type="tel" placeholder="(416) 555-0123" required />
       </div>
 
       <div className="space-y-2">
         <Label htmlFor="referrer-email">Your Email *</Label>
-        <Input id="referrer-email" type="email" placeholder="jane@example.com" required />
+        <Input id="referrer-email" name="referrer-email" type="email" placeholder="jane@example.com" required />
       </div>
 
       <Button type="submit" variant="accent" size="lg" className="w-full" disabled={isSubmitting}>
