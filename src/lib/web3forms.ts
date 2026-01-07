@@ -1,6 +1,6 @@
 // Web3Forms configuration
 // Get your free access key at https://web3forms.com/
-export const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE";
+export const WEB3FORMS_ACCESS_KEY = "685c201f-40ba-4f84-bc51-d85c7615ffae";
 
 export const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
